@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro de Usuário</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+<style>
+    body {
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+<h4 class="center-align">Cadastro de Usuário</h4>
+<form id="formCadastro">
+<div class="input-field">
+<input type="text" id="nome" required>
+<label for="nome">Nome</label>
+</div>
+<div class="input-field">
+<input type="text" id="login" required>
+<label for="login">Login</label>
+</div>
+<div class="input-field">
+<input type="password" id="senha" required>
+<label for="senha">Senha</label>
+</div>
+<div class="input-field">
+<input type="email" id="email" required>
+<label for="email">E-mail</label>
+</div>
+<div class="input-field">
+<input type="text" id="endereco" required>
+<label for="endereco">Endereço</label>
+</div>
+<div class="input-field">
+<input type="tel" id="telefone" required>
+<label for="telefone">Telefone</label>
+</div>
+<div class="center-align">
+<button class="btn waves-effect waves-light" type="button" id="btnSalvar">Salvar</button>
+</div>
+</form>
+</div>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    document.getElementById('btnSalvar').addEventListener('click', () => {
+      const nome = document.getElementById('nome').value;
+      const login = document.getElementById('login').value;
+      const senha = document.getElementById('senha').value;
+      const email = document.getElementById('email').value;
+      const endereco = document.getElementById('endereco').value;
+      const telefone = document.getElementById('telefone').value;
+ 
+      if (nome && login && senha && email && endereco && telefone) {
+        const cliente = {
+          nome,
+          login,
+          senha,
+          email,
+          endereco,
+          telefone
+        };
+ 
+        localStorage.setItem('cliente', JSON.stringify(cliente));
+ 
+        document.getElementById('formCadastro').reset();
+ 
+        M.toast({ html: 'Usuário cadastrado com sucesso!', classes: 'green' });
+      } else {
+        M.toast({ html: 'Preencha todos os campos!', classes: 'red' });
+      }
+    });
+</script>
+</body>
+</html>
